@@ -1,3 +1,4 @@
+import com.wolox.*;
 
 def call(String yamlName) {
     def yaml = readYaml file: yamlName;
