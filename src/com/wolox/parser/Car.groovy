@@ -5,7 +5,7 @@ import com.wolox.docker.DockerConfiguration;
 import com.wolox.services.*;
 import com.wolox.steps.*;
 
-class ConfigParser {
+class Car {
 
     private static String LATEST = 'latest';
     private static Integer DEFAULT_TIMEOUT = 600;   // 600 seconds
