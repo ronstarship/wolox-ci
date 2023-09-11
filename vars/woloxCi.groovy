@@ -1,4 +1,5 @@
-
+import org.jenkinsci.plugins.workflow.libs.Library
+@Library('wolox-ci')
 import com.wolox.parser.ConfigParser;
 import com.wolox.*;
 
