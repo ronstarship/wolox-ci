@@ -7,7 +7,7 @@ def call(String yamlName) {
     def yaml = readYaml file: yamlName;
 
     def buildNumber = Integer.parseInt(env.BUILD_ID);
-    println("env is: ",env)
+    print(env)
     // load project's configuration
     ProjectConfiguration projectConfig = ConfigParser.parse(yaml, env);
 
