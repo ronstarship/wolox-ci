@@ -1,4 +1,5 @@
 import com.wolox.*;
+import com.wolox.parser.ConfigParser;
 
 def call(String yamlName) {
     def yaml = readYaml file: yamlName;
