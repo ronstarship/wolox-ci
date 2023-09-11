@@ -47,7 +47,7 @@ class ConfigParser {
         projectConfiguration.dockerConfiguration = new DockerConfiguration(projectConfiguration: projectConfiguration);
 
         projectConfiguration.timeout = yaml.timeout ?: DEFAULT_TIMEOUT;
-
+        print(projectConfiguration);
         return projectConfiguration;
     }
 
