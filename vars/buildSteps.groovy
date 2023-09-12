@@ -4,17 +4,13 @@ import com.wolox.*;
 import com.wolox.steps.Step;
 
 def call(ProjectConfiguration projectConfig, def dockerImage) {
-    return { variables ->
-        List<Step> stepsA = projectConfig.steps.steps
-        stepsA.each { step ->
+    List<Step> stepsA = projectConfig.steps.steps
+    stepsA.each { step ->
                 stage(step.name) {
                     step.commands.each { command ->
                         print("command---"+command)
                         sh command
                     }
                 }
-            }
-        def links = variables.collect { k, v -> "--link ${v.id}:${k}" }.join(" ")
-        dockerImage.run(links)
     }
 }
