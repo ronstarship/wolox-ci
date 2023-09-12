@@ -3,7 +3,7 @@ import org.jenkinsci.plugins.workflow.libs.Library
 import com.wolox.*;
 import com.wolox.steps.Step;
 
-def call(ProjectConfiguration projectConfig) {
+def call(ProjectConfiguration projectConfig, def dockerImage) {
     return { variables ->
         List<Step> stepsA = projectConfig.steps.steps
         stepsA.each { step ->
