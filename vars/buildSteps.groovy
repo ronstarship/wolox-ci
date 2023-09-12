@@ -6,7 +6,7 @@ import com.wolox.steps.Step;
 def call(ProjectConfiguration projectConfig, def dockerImage) {
     return { variables ->
         List<Step> stepsA = projectConfig.steps.steps
-        print("stepsA---"+links)
+        print("stepsA---"+stepsA)
         def links = variables.collect { k, v -> "--link ${v.id}:${k}" }.join(" ")
         print("links---"+links)
         dockerImage.inside(links) {
