@@ -4,14 +4,13 @@ import com.wolox.*;
 import com.wolox.steps.Step;
 
 def call(ProjectConfiguration projectConfig, def dockerImage) {
-    sh 'mvn install'
     return { variables ->
         List<Step> stepsA = projectConfig.steps.steps
         stepsA.each { step ->
                 stage(step.name) {
                     step.commands.each { command ->
                         print("command---"+command)
-                        sh "'"+command+"'"
+                        sh command
                     }
                 }
             }
