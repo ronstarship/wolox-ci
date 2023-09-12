@@ -10,7 +10,7 @@ def call(ProjectConfiguration projectConfig, def dockerImage) {
                 stage(step.name) {
                     step.commands.each { command ->
                         print("command---"+command)
-                        sh command
+                        sh "'"+command+"'"
                     }
                 }
             }
