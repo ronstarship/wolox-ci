@@ -2,7 +2,7 @@ import org.jenkinsci.plugins.workflow.libs.Library
 @Library('wolox-ci')
 import com.wolox.*;
 
-def call(ProjectConfiguration projectConfig, def _, def nextClosure) {
+def scall(ProjectConfiguration projectConfig, def _, def nextClosure) {
     return { variables ->
         timeout(time: projectConfig.timeout, unit: 'SECONDS') {
             withEnv(projectConfig.environment) {
