@@ -24,6 +24,12 @@ def call(String yamlName) {
 
     }
 
+
+
+    // we execute the top level closure so that the cascade starts.
+    try {
+        closure([:]);
+
     // build the image specified in the configuration
     def dockerImage = docker.build(registry," --file ${projectConfig.dockerfile} .");
 
@@ -33,9 +39,6 @@ def call(String yamlName) {
     dockerImage.push('latest')
     }
 
-    // we execute the top level closure so that the cascade starts.
-    try {
-        closure([:]);
     } finally{
         deleteDockerImages(projectConfig);
     }
