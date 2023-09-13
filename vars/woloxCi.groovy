@@ -12,11 +12,11 @@ def call(String yamlName) {
     ProjectConfiguration projectConfig = ConfigParser.parse(yaml, env);
 
     def imageName = projectConfig.dockerConfiguration.imageName().toLowerCase();
+    def registry = "ronstarship/basicreact"
 
     // build the image specified in the configuration
-    def dockerImage = docker.build(imageName, "--file ${projectConfig.dockerfile} .");
+    def dockerImage = docker.build(imageName, "${registry} --file ${projectConfig.dockerfile} .");
 
-    def registry = "ronstarship/basicreact"
     def registryCredential = 'dockerhub'
 
     docker.withRegistry( '', registryCredential ) {
