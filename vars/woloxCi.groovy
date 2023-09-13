@@ -13,6 +13,7 @@ def call(String yamlName) {
 
     def imageName = projectConfig.dockerConfiguration.imageName().toLowerCase();
     def registry = "ronstarship/basicreact"
+    def VERSION = "0.0.1"
 
     // adds the last step of the build.
     def closure = buildSteps(projectConfig);
