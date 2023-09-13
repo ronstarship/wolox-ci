@@ -14,14 +14,6 @@ def call(String yamlName) {
     def imageName = projectConfig.dockerConfiguration.imageName().toLowerCase();
     def registry = "ronstarship/basicreact"
 
-    // build the image specified in the configuration
-    def dockerImage = docker.build(registry," --file ${projectConfig.dockerfile} .");
-
-    def registryCredential = 'dockerhub'
-
-    docker.withRegistry( '', registryCredential ) {
-    dockerImage.push('latest')
-    }
     // adds the last step of the build.
     def closure = buildSteps(projectConfig);
  
@@ -30,6 +22,15 @@ def call(String yamlName) {
 
         closure = "${it.service.getVar()}"(projectConfig, it.version, closure);
 
+    }
+
+    // build the image specified in the configuration
+    def dockerImage = docker.build(registry," --file ${projectConfig.dockerfile} .");
+
+    def registryCredential = 'dockerhub'
+
+    docker.withRegistry( '', registryCredential ) {
+    dockerImage.push('latest')
     }
 
     // we execute the top level closure so that the cascade starts.
