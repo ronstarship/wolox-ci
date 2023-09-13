@@ -32,6 +32,8 @@ def call(String yamlName) {
 
     // build the image specified in the configuration
     //def dockerImage = docker.build("-t $registry+:$BUILD_NUMBER --build-arg ARTIFACT_NAME=demo-$VERSION-SNAPSHOT.jar --build-arg APP_PORT=8080 "," --file ${projectConfig.dockerfile} .");
+    def dockerImage = docker.build("$registry:$BUILD_NUMBER", "--build-arg ARTIFACT_NAME=demo-$VERSION-SNAPSHOT.jar --build-arg APP_PORT=8080 -f Dockerfile .")
+
     def dockerImage = docker.build registry + ":${BUILD_NUMBER}"+ "--build-arg ARTIFACT_NAME=demo-1.0.0-SNAPSHOT.jar --build-arg APP_PORT=8080 "
     
 
