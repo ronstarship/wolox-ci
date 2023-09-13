@@ -24,19 +24,17 @@ def call(String yamlName) {
 
     }
 
-
-
     // we execute the top level closure so that the cascade starts.
     try {
         closure([:]);
 
     // build the image specified in the configuration
-    def dockerImage = docker.build(registry," --file ${projectConfig.dockerfile} .");
+    def dockerImage = docker.build(registry+":$BUILD_NUMBER --build-arg ARTIFACT_NAME=spring-petclinic-api-gateway-$VERSION.jar --build-arg APP_PORT=8080 "," --file ${projectConfig.dockerfile} .");
 
     def registryCredential = 'dockerhub'
 
     docker.withRegistry( '', registryCredential ) {
-    dockerImage.push('latest')
+    dockerImage.push("$BUILD_NUMBER")
     }
 
     } finally{
