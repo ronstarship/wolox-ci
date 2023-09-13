@@ -15,7 +15,7 @@ def call(String yamlName) {
     def registry = "ronstarship/basicreact"
 
     // build the image specified in the configuration
-    def dockerImage = docker.build(imageName, "${registry} --file ${projectConfig.dockerfile} .");
+    def dockerImage = docker.build(imageName, "-t ${registry}"," --file ${projectConfig.dockerfile} .");
 
     def registryCredential = 'dockerhub'
 
