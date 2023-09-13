@@ -14,6 +14,7 @@ def call(String yamlName) {
     def imageName = projectConfig.dockerConfiguration.imageName().toLowerCase();
     def registry = "ronstarship/basicreact"
     def VERSION = "0.0.1"
+    def registryCredential = 'dockerhub'
 
     // adds the last step of the build.
     def closure = buildSteps(projectConfig);
@@ -31,8 +32,8 @@ def call(String yamlName) {
 
     // build the image specified in the configuration
     //def dockerImage = docker.build("-t $registry+:$BUILD_NUMBER --build-arg ARTIFACT_NAME=demo-$VERSION-SNAPSHOT.jar --build-arg APP_PORT=8080 "," --file ${projectConfig.dockerfile} .");
-    def dockerImage = docker.build registry + ":${BUILD_NUMBER} --build-arg ARTIFACT_NAME=demo-${VERSION}-SNAPSHOT.jar --build-arg APP_PORT=8080 ."
-    def registryCredential = 'dockerhub'
+    def dockerImage = docker.build registry + ":${BUILD_NUMBER}"
+    
 
     docker.withRegistry( '', registryCredential ) {
     dockerImage.push("$BUILD_NUMBER")
