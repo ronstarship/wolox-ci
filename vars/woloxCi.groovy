@@ -16,12 +16,15 @@ def call(String yamlName) {
     // build the image specified in the configuration
     def dockerImage = docker.build(imageName, "--file ${projectConfig.dockerfile} .");
 
-    dockerImage.push('latest')
+    def registry = "ronstarship/basicreact"
+    def registryCredential = 'dockerhub'
 
+    docker.withRegistry( '', registryCredential ) {
+    dockerImage.push('latest')
+    }
     // adds the last step of the build.
     def closure = buildSteps(projectConfig);
  
-    sh 'mvn clean install'
     // each service is a closure that when called it executes its logic and then calls a closure, the next step.
     projectConfig.services.each {
 
